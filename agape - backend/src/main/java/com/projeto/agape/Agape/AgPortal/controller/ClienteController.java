@@ -26,7 +26,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> getClientePorId(@PathVariable Long id) {
+    public ResponseEntity<Cliente> getClienteById(@PathVariable Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         if (cliente.isPresent()) {
             return ResponseEntity.ok(cliente.get());
