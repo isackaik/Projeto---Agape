@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const userToken = localStorage.getItem("user_token");
-        const usersStorage = localStorage.getItem("users_db");
+        const usersStorage = localStorage.getItem("users_bd");
 
         if (userToken && usersStorage) {
             const hasUser = JSON.parse(usersStorage)?.filter(
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const signin = (id, password) => {
-        const usersStorage = JSON.parse(localStorage.getItem("users_db"));
+        const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
         const hasUser = usersStorage?.filter((user) => user.id === id);
 

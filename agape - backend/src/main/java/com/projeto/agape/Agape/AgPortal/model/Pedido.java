@@ -2,8 +2,7 @@ package com.projeto.agape.Agape.AgPortal.model;
 
 import jakarta.persistence.*;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "pedidos")
@@ -15,7 +14,7 @@ public class Pedido {
     private Long cod_produto;
     private Integer qtd_produto;
     private Double total_pedido;
-    private LocalDateTime data_pedido;
+    private LocalDate data_pedido;
 
     public Long getCod_pedido() {
         return cod_pedido;
@@ -57,11 +56,11 @@ public class Pedido {
         this.total_pedido = total_pedido;
     }
 
-    public LocalDateTime getData_pedido() {
+    public LocalDate getData_pedido() {
         return data_pedido;
     }
 
-    public void setData_pedido(LocalDateTime data_pedido) {
+    public void setData_pedido(LocalDate data_pedido) {
         this.data_pedido = data_pedido;
     }
 }
