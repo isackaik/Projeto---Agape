@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { urlClientes } from "../../API/api";
-import { Table, Container } from './styles';
+import * as C from './styles';
 import { FaRegTrashAlt, FaEdit } from 'react-icons/fa';
 
 function CadastroClientes() {
@@ -27,8 +27,12 @@ function CadastroClientes() {
     }, [])
 
     return (
-        <Container>
-            <Table>
+        <C.Container>
+            <C.Label>Clientes <C.H3>Cadastrar, consultar, alterar e excluir um cliente    </C.H3></C.Label>
+            <C.LabelButton>
+                <button>Novo</button>
+            </C.LabelButton>
+            <C.Table>
                 <table className="table">
                     <thead>
                         <tr>
@@ -53,8 +57,8 @@ function CadastroClientes() {
                         }
                     </tbody>
                 </table>
-            </Table>
-        </Container>
+            </C.Table>
+        </C.Container>
     );
 };
 
