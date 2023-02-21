@@ -5,10 +5,12 @@ import { AuthProvider } from './contexts/auth';
 
 const App = () => {
     return (
-        <AuthProvider>
-            <RoutesApp />
-            <GlobalStyle />
-        </AuthProvider>
+        <div className='App'>
+            <AuthProvider>
+                <GlobalStyle />
+                <RoutesApp />
+            </AuthProvider>
+        </div>
     );
 };
 

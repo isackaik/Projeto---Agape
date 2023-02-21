@@ -2,7 +2,6 @@ package com.projeto.agape.Agape.AgPortal.controller;
 
 import com.projeto.agape.Agape.AgPortal.model.Usuario;
 import com.projeto.agape.Agape.AgPortal.repository.UsuarioRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/usuarios")
 public class UsuarioController {
     private UsuarioRepository usuarioRepository;
@@ -24,9 +24,24 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
-        Usuario novoUsuario = usuarioRepository.save(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
+    public ResponseEntity<String> createUsuario(@RequestBody Usuario usuario) {
+        Optional<Usuario> existingUser = usuarioRepository.findById(usuario.getId_usuario());
+        if (existingUser.isPresent()) {
+            return ResponseEntity.badRequest().body("Identificador já está em uso.");
+        }
+        usuarioRepository.save(usuario);
+        return ResponseEntity.ok("Usuário cadastrado com sucesso");
+    }
+
+    @GetMapping("/{id}/{password}")
+    public ResponseEntity<String> validaUsuario(@PathVariable Long id, @PathVariable String password){
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if (usuario.isPresent()){
+            if (usuario.get().getPassword_usuario().equals(password)){
+                return ResponseEntity.ok("Acesso autorizado!");
+            } else return ResponseEntity.badRequest().body("Identificador ou senha inválida!");
+        } else
+            return ResponseEntity.badRequest().body("Usuário não cadastrado.");
     }
 
     @GetMapping("/{id}")

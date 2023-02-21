@@ -4,6 +4,8 @@ import Button from "../../components/button";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import img from "../../assets/agape_img.png";
+import img2 from "../../assets/agape-logo-enterprise.png"
 
 const Signup = () => {
   const [id, setId] = useState("");
@@ -36,8 +38,10 @@ const Signup = () => {
 
   return (
     <C.Container>
-      <C.Label>SISTEMA DE LOGIN</C.Label>
+      <img src={img} alt="foto logo_agape" width="40%" height="80%" />
       <C.Content>
+        <C.Label><img src={img2} alt="Ágape Sistemas" width="160px" /></C.Label>
+        <C.Label>Cadastro de Usuário</C.Label>
         <Input
           type="id"
           placeholder="Identificador do usuário"

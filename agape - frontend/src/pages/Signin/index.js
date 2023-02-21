@@ -4,8 +4,13 @@ import Input from "../../components/input";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import img from "../../assets/agape_img.png";
+import img2 from "../../assets/agape-logo-enterprise.png"
+
 
 const Signin = () => {
+  
+  
   const { signin } = useAuth();
   const navigate = useNavigate();
 
@@ -31,8 +36,10 @@ const Signin = () => {
 
   return (
     <C.Container>
-      <C.Label>SISTEMA DE LOGIN</C.Label>
+      <img src={img} alt="foto logo_agape" width="40%" height="80%"/>
+      
       <C.Content>
+      <C.Label><img src={img2} alt="Ágape Sistemas" width="160px" /></C.Label>
         <Input
           type="id"
           placeholder="Identificação do usuário: "
@@ -47,10 +54,11 @@ const Signin = () => {
         />
         <C.labelError>{error}</C.labelError>
         <Button Text="Entrar" onClick={handleLogin} />
+        <Button Text="Cancelar" onClick={handleLogin} />
         <C.LabelSignup>
-          Não tem uma conta?
+          Não é um usuário?
           <C.Strong>
-            <Link to="/signup">&nbsp;Registre-se</Link>
+            <Link to="/signup">&nbsp;Cadastre-se!</Link>
           </C.Strong>
         </C.LabelSignup>
       </C.Content>

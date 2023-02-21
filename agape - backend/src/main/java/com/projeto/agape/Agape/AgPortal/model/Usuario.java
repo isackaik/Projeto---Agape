@@ -6,18 +6,9 @@ import jakarta.persistence.*;
 @Table(name = "usuarios")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cod_usuario;
+    @Column(unique = true)
     private Long id_usuario;
     private String password_usuario;
-
-    public Long getCod_usuario() {
-        return cod_usuario;
-    }
-
-    public void setCod_usuario(Long cod_usuario) {
-        this.cod_usuario = cod_usuario;
-    }
 
     public Long getId_usuario() {
         return id_usuario;

@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button";
+import Header from "../../components/Header";
 import useAuth from "../../hooks/useAuth";
+import CadastroClientes from "../Cadastro";
 import * as C from "./styles";
 
 const Home = () => {
@@ -10,10 +12,13 @@ const Home = () => {
 
   return (
     <C.Container>
-      <C.Title>Home</C.Title>
+      <Header />
+      <CadastroClientes />
+      {/*}
       <Button Text="Sair" onClick={() => [signout(), navigate("/")]}>
         Sair
       </Button>
+  */}
     </C.Container>
   );
 };
