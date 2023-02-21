@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
+    margin: 0 100px;
+`;
 
-
+export const Table = styled.div`
+    text-align: center;
 `;
