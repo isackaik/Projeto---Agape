@@ -2,7 +2,13 @@ package com.projeto.agape.Agape.AgPortal.controller;
 
 import com.projeto.agape.Agape.AgPortal.model.Cliente;
 import com.projeto.agape.Agape.AgPortal.repository.ClienteRepository;
+
+import com.projeto.agape.Agape.AgPortal.services.RelatorioService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +19,12 @@ import java.util.Optional;
 @CrossOrigin("*")
 @RequestMapping("/clientes")
 public class ClienteController {
+
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private RelatorioService relatorioService;
 
     @PostMapping
     public Cliente creatCliente(@RequestBody Cliente cliente) {
@@ -74,4 +84,11 @@ public class ClienteController {
         }
     }
 
+    @GetMapping(value ="/relatorio", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorio(HttpServletRequest request) throws Exception {
+        byte[] pdf = relatorioService.gerarRelatorio("Clientes", request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
+    }
 }
