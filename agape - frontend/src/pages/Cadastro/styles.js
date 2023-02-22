@@ -28,3 +28,8 @@ export const LabelButton = styled.div`
 export const Table = styled.div`
     text-align: center;
 `;
+
+export const LineForm = styled.div`
+    display: flex;
+    padding: 5px 0;
+`;
