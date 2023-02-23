@@ -18,7 +18,7 @@ export const H3 = styled.div`
 `;
 
 export const LabelButton = styled.div`
-        background-color: #CFD3F7;
+        background-color: #E3DBF5;
         height: 50px;
         padding: 5px;
         padding-right: 2rem;

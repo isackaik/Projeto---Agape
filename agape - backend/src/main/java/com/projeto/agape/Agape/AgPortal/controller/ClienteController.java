@@ -31,6 +31,7 @@ public class ClienteController {
         return clienteRepository.save(cliente);
     }
 
+
     @GetMapping
     public List<Cliente> getClientes() {
         return clienteRepository.findAll();

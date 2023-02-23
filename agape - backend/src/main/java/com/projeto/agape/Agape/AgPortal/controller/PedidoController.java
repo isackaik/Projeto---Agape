@@ -18,6 +18,7 @@ import java.util.Optional;
 @RequestMapping("/pedidos")
 public class PedidoController {
 
+    @Autowired
     private PedidoRepository pedidoRepository;
 
     @Autowired

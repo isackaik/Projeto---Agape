@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  height: 100%;
+  height: 100vh;
   gap: 20px;
-  background-color: #ACB4F9;
+  background-color: #858489;
   flex-direction: column;
 `;
 

@@ -18,6 +18,7 @@ import java.util.Optional;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
+    @Autowired
     private ProdutoRepository produtoRepository;
 
     @Autowired

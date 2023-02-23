@@ -28,16 +28,47 @@ function CadastroClientes() {
     }, [atualizar]);
 
     function handleChange(event) {
-        setCliente({...cliente, [event.target.name]: event.target.value });
+        setCliente({ ...cliente, [event.target.name]: event.target.value });
     }
 
     function handleSubmit(event2) {
         event2.preventDefault();
-        axios.post(urlClientes, cliente)
+        if (cliente.id == undefined) {
+            axios.post(urlClientes, cliente)
+                .then(response => {
+                    setAtualizar(response.data)
+                })
+                .catch(error => console.log(error))
+        } else {
+            axios.put(`${urlClientes}/${cliente.cod_cliente}`, cliente)
+                .then(response => {
+                    setAtualizar(response.data)
+                })
+                .catch(error => console.log(error))
+        }
+        clear();
+    }
+
+    function deleteCliente(id) {
+        axios.delete(`${urlClientes}/${id}`, cliente)
             .then(response => {
-                console.log(response.data);
+                setAtualizar(response.data);
             })
             .catch(error => console.log(error))
+        setAtualizar();
+    }
+
+
+    function clear() {
+        setCliente({
+            cod_cliente: '', nome_cliente: '',
+            cpf_cliente: '', rg_cliente: '',
+            nascimento_cliente: '', cidade_cliente: '',
+            bairro_cliente: '', uf_cliente: '',
+            endereco_cliente: '', complemento_cliente: '',
+            cep_cliente: '', telefone_cliente: '',
+            celular_cliente: '', observacao_cliente: ''
+        })
     }
 
     return (
@@ -49,6 +80,34 @@ function CadastroClientes() {
                 </button>
             </C.LabelButton>
 
+            <C.Table>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Alterar</th>
+                            <th scope="col">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            clientes.map((cliente) => (
+                                <tr key={cliente.cod_cliente}>
+                                    <th>{cliente.cod_cliente}</th>
+                                    <td>{cliente.nome_cliente}</td>
+                                    <td>{cliente.cpf_cliente}</td>
+                                    <td><FaEdit type="button" onClick={() => setCliente(cliente)} data-bs-toggle="modal" data-bs-target="#addClienteModal" /></td>
+                                    <td><FaRegTrashAlt type="button" onClick={() => setCliente(cliente)} data-bs-toggle="modal" data-bs-target="#deleteClienteModal" /></td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            </C.Table>
+
+            {/*MODAL - CADASTRAR CLIENTE*/}
             <div className="modal fade" id="addClienteModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -104,32 +163,22 @@ function CadastroClientes() {
                     </div>
                 </div>
             </div>
-            <C.Table>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">CPF</th>
-                            <th scope="col">Alterar</th>
-                            <th scope="col">Excluir</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            clientes.map((cliente) => (
-                                <tr key={cliente.cod_cliente}>
-                                    <th>{cliente.cod_cliente}</th>
-                                    <td>{cliente.nome_cliente}</td>
-                                    <td>{cliente.cpf_cliente}</td>
-                                    <td><FaEdit type="button" /></td>
-                                    <td><FaRegTrashAlt type="button" /></td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </C.Table>
+
+            {/*MODAL - CONFIRMAR EXCLUSÃO*/}
+            <div className="modal fade" id="deleteClienteModal" >
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Deseja realmente excluir o cliente?</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>&nbsp;&nbsp;
+                            <input type="submit" className="btn btn-outline-danger" onClick={() => deleteCliente(cliente.cod_cliente)} data-bs-dismiss="modal" value="Excluir"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </C.Container>
     );
 };
