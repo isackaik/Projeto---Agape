@@ -56,6 +56,7 @@ function CadastroClientes() {
             })
             .catch(error => console.log(error))
         setAtualizar();
+        clear();
     }
 
 
@@ -118,12 +119,12 @@ function CadastroClientes() {
                         <form onSubmit={handleSubmit}>
                             <div className="modal-body">
                                 <label type="text" className="form-label">Nome: </label>
-                                <input onChange={handleChange} value={cliente.nome_cliente} name='nome_cliente' type="text" className="form-control" placeholder='Nome' />
+                                <input onChange={handleChange} value={cliente.nome_cliente} name='nome_cliente' type="text" className="form-control" placeholder='Nome' required/>
                                 <C.LineForm>
                                     <label type="text" className="form-label">CPF: </label>
-                                    <input onChange={handleChange} value={cliente.cpf_cliente} name='cpf_cliente' type="text" className="form-control" placeholder='CPF' />
+                                    <input onChange={handleChange} value={cliente.cpf_cliente} name='cpf_cliente' type="text" className="form-control" placeholder='CPF' required/>
                                     <label type="text" className="form-label">RG: </label>
-                                    <input onChange={handleChange} value={cliente.rg_cliente} name='rg_cliente' type="text" className="form-control" placeholder='RG' />
+                                    <input onChange={handleChange} value={cliente.rg_cliente} name='rg_cliente' type="text" className="form-control" placeholder='RG' required/>
                                 </C.LineForm>
                                 <C.LineForm>
                                     <label type="text" className="form-label">Data de Nascimento: </label>
@@ -131,31 +132,31 @@ function CadastroClientes() {
                                 </C.LineForm>
                                 <C.LineForm>
                                     <label type="text" className="form-label">UF: </label>
-                                    <input onChange={handleChange} value={cliente.uf_cliente} name='uf_cliente' type="text" className="form-control" placeholder='UF' />
+                                    <input onChange={handleChange} value={cliente.uf_cliente} name='uf_cliente' type="text" className="form-control" placeholder='UF' required/>
                                     <label type="text" className="form-label">Cidade: </label>
-                                    <input onChange={handleChange} value={cliente.cidade_cliente} name='cidade_cliente' type="text" className="form-control" placeholder='Cidade' />
+                                    <input onChange={handleChange} value={cliente.cidade_cliente} name='cidade_cliente' type="text" className="form-control" placeholder='Cidade' required/>
                                 </C.LineForm>
                                 <C.LineForm>
                                     <label type="text" className="form-label">Bairro: </label>
-                                    <input onChange={handleChange} value={cliente.bairro_cliente} name='bairro_cliente' type="text" className="form-control" placeholder='Bairro' />
+                                    <input onChange={handleChange} value={cliente.bairro_cliente} name='bairro_cliente' type="text" className="form-control" placeholder='Bairro' required/>
                                     <label type="text" className="form-label">CEP: </label>
-                                    <input onChange={handleChange} value={cliente.cep_cliente} name='cep_cliente' type="text" className="form-control" placeholder='CEP' width='20%' />
+                                    <input onChange={handleChange} value={cliente.cep_cliente} name='cep_cliente' type="text" className="form-control" placeholder='CEP' required/>
                                 </C.LineForm>
                                 <label type="text" className="form-label">Endereço: </label>
-                                <input onChange={handleChange} value={cliente.endereco_cliente} name='endereco_cliente' type="text" className="form-control" placeholder='Endereço' />
+                                <input onChange={handleChange} value={cliente.endereco_cliente} name='endereco_cliente' type="text" className="form-control" placeholder='Endereço' required/>
                                 <label type="text" className="form-label">Complemento: </label>
                                 <input onChange={handleChange} value={cliente.complemento_cliente} name='complemento_cliente' type="text" className="form-control" placeholder='Complemento' />
                                 <C.LineForm>
                                     <label type="text" className="form-label">Telefone: </label>
                                     <input onChange={handleChange} value={cliente.telefone_cliente} name='telefone_cliente' type="text" className="form-control" placeholder='Telefone' />
                                     <label type="text" className="form-label">Celular: </label>
-                                    <input onChange={handleChange} value={cliente.celular_cliente} name='celular_cliente' type="text" className="form-control" placeholder='Celular' />
+                                    <input onChange={handleChange} value={cliente.celular_cliente} name='celular_cliente' type="text" className="form-control" placeholder='Celular' required/>
                                 </C.LineForm>
                                 <label type="text" className="form-label">Observação: </label>
                                 <input onChange={handleChange} value={cliente.observacao_cliente} name='observacao_cliente' type="text" className="form-control" placeholder='Observação' />
                                 <C.LineForm>
                                     <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>&nbsp;&nbsp;
-                                    <input type="submit" name='cadCliente' className="btn btn-outline-primary" value="Salvar" data-bs-dismiss="modal" />
+                                    <input type="submit" name='cadCliente' className="btn btn-outline-primary" value="Salvar" />
                                 </C.LineForm>
                             </div>
                         </form>
